@@ -1,7 +1,8 @@
 import os.path
-import tkinter as tk
+import qt_shims
+import qt_shims as tk
 from logging import getLogger
-from tkinter import ttk
+from qt_shims import ttk
 
 from thonny import is_portable, languages, ui_utils
 
@@ -37,10 +38,10 @@ class FirstRunWindow(tk.Tk):
         logo_label = ttk.Label(self.main_frame, image=self.logo)
         logo_label.grid(row=1, rowspan=3, column=1, sticky="nsew")
 
-        self.padx = ui_utils.ems_to_pixels(3)
-        self.pady = ui_utils.ems_to_pixels(3)
+        self.padx = qt_shims.ems_to_pixels(3)
+        self.pady = qt_shims.ems_to_pixels(3)
 
-        self.language_variable = ui_utils.create_string_var(
+        self.language_variable = qt_shims.create_string_var(
             languages.BASE_LANGUAGE_NAME, self.on_change_language
         )
         self.add_combo(
@@ -63,7 +64,7 @@ class FirstRunWindow(tk.Tk):
         print(self.language_variable.get())
 
     def add_combo(self, row, label_text, variable, values):
-        pady = ui_utils.ems_to_pixels(0.7)
+        pady = qt_shims.ems_to_pixels(0.7)
         label = ttk.Label(self.main_frame, text=label_text)
         label.grid(row=row, column=2, sticky="sw", pady=(pady, 0))
         assert isinstance(variable, tk.Variable)
@@ -80,7 +81,7 @@ class FirstRunWindow(tk.Tk):
         combobox.grid(
             row=row,
             column=3,
-            padx=(ui_utils.ems_to_pixels(1), self.padx),
+            padx=(qt_shims.ems_to_pixels(1), self.padx),
             sticky="sw",
             pady=(pady, 0),
         )
