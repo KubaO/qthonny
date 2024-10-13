@@ -590,6 +590,7 @@
     <Compile Include="thonny\plugins\uv\__init__.py" />
     <Compile Include="thonny\plugins\variables.py" />
     <Compile Include="thonny\plugins\__init__.py" />
+    <Compile Include="thonny\qt_shims.py" />
     <Compile Include="thonny\res\_create_disabled_variants.py" />
     <Compile Include="thonny\roughparse.py" />
     <Compile Include="thonny\rst_utils.py" />

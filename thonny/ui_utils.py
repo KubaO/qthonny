@@ -9,6 +9,7 @@ import threading
 import time
 import tkinter as tk
 import tkinter.font
+import PyQt6 as qt
 import traceback
 from _tkinter import TclError
 from abc import ABC, abstractmethod
@@ -2158,6 +2159,10 @@ def handle_mistreated_latin_shortcuts(registry, event):
 def show_dialog(
     dlg, master=None, width=None, height=None, left=None, top=None, modal=True, transient=True
 ):
+    if isinstance(dlg, qt.QtWidgets.QWidget) and not isinstance(dlg, tk.Toplevel):
+        dlg.exec()
+        return
+
     if getattr(dlg, "closed", False):
         return
 
@@ -2647,6 +2652,15 @@ def update_text_height(text: tk.Text, min_lines: int, max_lines: int) -> None:
         return
     required_height = text.tk.call((text, "count", "-update", "-displaylines", "1.0", "end-3c"))
     text.configure(height=min(max(required_height, min_lines), max_lines))
+
+
+def get_thonny_icon() -> qt.QtGui.QIcon:
+    app = qt.QtWidgets.QApplication.instance()
+    if app.windowIcon().isNull():
+        from pathlib import Path
+        icon = qt.QtGui.QIcon(str(Path(__file__).parent / "res" / "thonny.ico"))
+        app.setWindowIcon(icon)
+    return app.windowIcon()
 
 
 if __name__ == "__main__":

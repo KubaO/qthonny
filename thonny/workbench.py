@@ -16,6 +16,7 @@ import tkinter as tk
 import tkinter.font as tk_font
 import traceback
 import webbrowser
+import PyQt6.QtCore as qtc
 from logging import getLogger
 from threading import Thread
 from tkinter import messagebox, ttk
@@ -282,6 +283,9 @@ class Workbench(tk.Tk):
         while not self._event_queue.empty():
             sequence, event = self._event_queue.get()
             self.event_generate(sequence, event)
+
+        qtc.QCoreApplication.sendPostedEvents()
+        qtc.QCoreApplication.processEvents()
 
         self._event_polling_id = self.after(20, self.poll_events)
 

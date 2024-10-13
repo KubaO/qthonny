@@ -21,6 +21,14 @@ logger = logging.getLogger(__name__)
 
 
 def run() -> int:
+    # Initialize Qt
+    from PyQt6.QtWidgets import QApplication
+    app = QApplication(sys.argv)
+    app.processEvents()
+
+    from ui_utils import get_thonny_icon
+    get_thonny_icon()
+
     # First make sure the command line is good
     parsed_args = _parse_arguments_to_dict(sys.argv[1:])
 
