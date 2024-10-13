@@ -3,16 +3,15 @@
 import datetime
 import platform
 import sys
-import tkinter as tk
-import tkinter.font
+import qt_shims as tk, qt_shims as tkinter
 from logging import getLogger
-from tkinter import ttk
+from qt_shims import ttk
 
 import thonny
 from thonny import get_workbench, ui_utils
 from thonny.common import get_python_version_string
 from thonny.languages import tr
-from thonny.ui_utils import CommonDialog, CommonDialogEx, create_url_label, get_hyperlink_cursor
+from qt_shims import CommonDialogEx, create_url_label
 
 logger = getLogger(__name__)
 
