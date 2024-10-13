@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-import tkinter as tk
+import qt_shims as tk
 from logging import getLogger
-from tkinter import ttk
+from qt_shims import ttk
 
 from thonny import get_workbench
 from thonny.languages import tr
 from thonny.misc_utils import running_on_mac_os
-from thonny.ui_utils import CommonDialog, select_sequence, show_dialog
+from thonny.qt_shims import CommonDialog
+from thonny.ui_utils import select_sequence, show_dialog
 
 # TODO - consider moving the cmd_find method to main class in order to pass the editornotebook reference
 # TODO - logging
